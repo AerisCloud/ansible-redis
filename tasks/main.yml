@@ -1,0 +1,27 @@
+- include: centos.yml
+  when: ansible_distribution == 'CentOS'
+
+- include: debian.yml
+  when: ansible_distribution == 'Debian'
+
+- name: "Set redis.conf"
+  template: >
+    src=redis.conf
+    dest="{{ redis_conf_path }}/redis.conf"
+    mode=0644
+    owner=root
+    group=root
+  notify:
+    - Restart Redis
+  tags:
+    - redis
+    - configs
+    - files
+
+- name: "Make sure Redis is running"
+  service: >
+    name={{ redis_initd_name }}
+    enabled=yes
+    state=started
+  tags:
+    - redis

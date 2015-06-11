@@ -1,0 +1,17 @@
+---
+# File for ansible-role-test (https://github.com/aeriscloud/ansible-role-test)
+name: "Tests"
+playbook:
+- hosts: centos:debian
+  sudo: yes
+  roles:
+  - role: "@ROLE_NAME@"
+  tasks:
+  - name: "Check that the redis-cli binary is present"
+    stat: path=/usr/bin/redis-cli
+    register: stat_redis_cli
+  - name: "Check that the redis-server binary is present"
+    stat: path=/usr/bin/redis-server
+    register: stat_redis_server
+  - fail: msg="redis is not installed"
+    when: not stat_redis_cli.stat.exists or not stat_redis_server.stat.exists

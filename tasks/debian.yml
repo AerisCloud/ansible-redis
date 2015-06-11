@@ -1,0 +1,14 @@
+- name: "Install redis"
+  apt: >
+    name="redis-server"
+    state=present
+  tags:
+    - redis
+    - pkgs
+
+- name: "Set redis.conf path and init.d script name"
+  set_fact: >
+    redis_conf_path=/etc/redis
+    redis_initd_name=redis-server
+  tags:
+    - redis

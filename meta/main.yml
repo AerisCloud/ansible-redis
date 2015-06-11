@@ -1,0 +1,30 @@
+galaxy_info:
+  author: Emilien Kenler <ekenler@wizcorp.jp>
+  description: Installs redis on a server
+  company: Wizcorp K.K.
+  license: MIT
+  min_ansible_version: 1.8.1
+  platforms:
+    - name: EL
+      versions:
+        - 6
+        - 7
+    - name: debian
+      versions:
+        - wheezy
+        - jessie
+  categories:
+    - database
+    - database:nosql
+    - clustering
+dependencies:
+  - role: aeriscloud.dotdeb
+  - role: aeriscloud.repos
+    repositories:
+      centos6:
+        - epel
+        - remi
+      centos7:
+        - epel
+        - remi
+  - role: aeriscloud.yum

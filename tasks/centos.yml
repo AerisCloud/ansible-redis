@@ -1,0 +1,17 @@
+# CentOS Redis
+
+- name: "Install redis"
+  yum: >
+    name=redis
+    state=installed
+    enablerepo=epel,remi
+  tags:
+    - redis
+    - pkgs
+
+- name: "Set redis.conf path and init.d script name"
+  set_fact: >
+    redis_conf_path=/etc
+    redis_initd_name=redis
+  tags:
+    - redis
