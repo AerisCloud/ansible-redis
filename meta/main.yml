@@ -18,8 +18,8 @@ galaxy_info:
     - database:nosql
     - clustering
 dependencies:
-  - role: aeriscloud.dotdeb
-  - role: aeriscloud.repos
+  - role: AerisCloud.dotdeb
+  - role: AerisCloud.repos
     repositories:
       centos6:
         - epel
@@ -27,4 +27,4 @@ dependencies:
       centos7:
         - epel
         - remi
-  - role: aeriscloud.yum
+  - role: AerisCloud.yum
